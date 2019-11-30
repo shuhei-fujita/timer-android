@@ -32,6 +32,14 @@ class MainActivity : AppCompatActivity() {
         stop_button.setOnClickListener {
             handler.removeCallbacks(runnable)
         }
+
+        reset_button.setOnClickListener {
+            handler.removeCallbacks(runnable)
+            time_value = 0
+            timeToText()?.let {
+                time_view.text = it
+            }
+        }
     }
 
     private fun timeToText(time: Int = 0): String? {
