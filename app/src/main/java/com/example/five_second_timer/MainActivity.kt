@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        start.setOnClickListener {
+        start_button.setOnClickListener {
             handler.post(runnable)
         }
 
-        stop.setOnClickListener {
+        stop_button.setOnClickListener {
             handler.removeCallbacks(runnable)
         }
     }
