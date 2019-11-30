@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
                 time_view.text = it
             }
 
-            handler.postDelayed(this, 1000)
+            handler.postDelayed(this, 10)
         }
     }
 
