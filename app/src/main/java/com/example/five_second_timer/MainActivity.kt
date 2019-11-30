@@ -1,11 +1,15 @@
 package com.example.five_second_timer
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.five_second_timer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private val binding: ActivityMainBinding by lazy {
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+    }
 
     private val handler = Handler()
     private var time_value = 0
@@ -14,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             time_value++
 
             timeToText(time_value)?.let {
-                time_view.text = it
+                binding.timeView.text = it
             }
 
             handler.postDelayed(this, 10)
@@ -23,21 +27,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        start_button.setOnClickListener {
+        binding.startButton.setOnClickListener {
             handler.post(runnable)
         }
 
-        stop_button.setOnClickListener {
+        binding.stopButton.setOnClickListener {
             handler.removeCallbacks(runnable)
         }
 
-        reset_button.setOnClickListener {
+        binding.resetButton.setOnClickListener {
             handler.removeCallbacks(runnable)
             time_value = 0
             timeToText()?.let {
-                time_view.text = it
+                binding.timeView.text = it
             }
         }
     }
